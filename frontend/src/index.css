@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+body {
+  background-color: #e7e7e7;
+}
+
+input.error,
+textarea.error {
+  border: 2px solid #ef4444;
+}
