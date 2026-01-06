@@ -1,6 +1,7 @@
 import { useNoteContext } from "../hooks/useNoteContext";
 import { useAuthContext } from "../hooks/useAuthContext";
 
+const API_BASE = import.meta.env.VITE_API_URL;
 const NoteDetails = ({ note }) => {
   const { dispatch } = useNoteContext();
   const { user } = useAuthContext();
@@ -8,7 +9,8 @@ const NoteDetails = ({ note }) => {
     if (!user) {
       return;
     }
-    const response = await fetch(`/api/notes/${note._id}`, {
+    
+    const response = await fetch(`${API_BASE}/api/notes/${note._id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${user.token}`,
