@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 const app = express();
 
@@ -10,6 +11,16 @@ const userRouter = require('./routes/userRoute')
 // MIDDLEWARE
 app.use(express.json()); // It looks if it has a some (body) to request to the server if it does it parses data to json format so we can  access that through req handler. 
 
+// CORS
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://note-wala.vercel.app",
+    ],
+    credentials: true,
+  })
+);
 
 app.use((req, res, next) => {
   console.log("HIT:", req.method, req.url);
