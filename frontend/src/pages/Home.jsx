@@ -10,7 +10,7 @@ const Home = () => {
   useEffect(() => {
     const fetchNotes = async () => {
       try {
-        const response = await fetch("/api/notes", {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/notes`, {
           headers: {
             Authorization: `Bearer ${user.token}`,
           },

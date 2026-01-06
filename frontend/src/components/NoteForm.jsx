@@ -21,7 +21,7 @@ const NoteForm = () => {
     const note = { title, snippet, body };
 
     try {
-      const response = await fetch("/api/notes", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/notes`, {
         method: "POST",
         body: JSON.stringify(note),
         headers: {

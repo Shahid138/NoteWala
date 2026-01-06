@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
 
+const API_BASE = import.meta.env.VITE_API_URL;
+
 export const useLogin = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -11,7 +13,7 @@ export const useLogin = () => {
     setError(null);
 
     try {
-      const response = await fetch("/api/user/login", {
+       const response = await fetch(`${API_BASE}/api/user/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -22,6 +24,7 @@ export const useLogin = () => {
       if (!response.ok) {
         setIsLoading(false);
         setError(json.error);
+        return;
       }
 
       // Save JWT to localstorage or  persist user
